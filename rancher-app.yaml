@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rancher
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://releases.rancher.com/server-charts/latest
+    chart: rancher
+    targetRevision: latest
+    helm:
+      valueFiles:
+        - values.yaml # If you have custom values file
+      parameters:
+        - name: hostname
+          value: "rancher.example.com"
+        - name: replicas
+          value: "3"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cattle-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
