@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://releases.rancher.com/server-charts/latest
     chart: rancher
-    targetRevision: 2.6.3
+    targetRevision: 2.6.4
     helm:
       valueFiles:
         - values.yaml # If you have custom values file
